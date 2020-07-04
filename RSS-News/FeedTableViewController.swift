@@ -9,92 +9,67 @@
 import UIKit
 import Foundation
 
+struct SortedByCategories {
+    var sectionName: String
+    var sectionObjects: [NewModel]
+    var isExpanded:Bool
+}
+
 class FeedTableViewController: UITableViewController {
 
     var news:[NewModel] = []
     let searchController = UISearchController(searchResultsController: nil)
-
+    var dictionatyByCategoryKey = [String:[NewModel]]()
+    var sortedByCategoryObj = [SortedByCategories]()
+    var isSorted:Bool = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = UITableView.automaticDimension
         tableView.refreshControl?.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        tableView.tableFooterView = UIView()
         self.tableView.dataSource = self
         self.tableView.delegate = self
         loadData()
-        setUpSearchBar()
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "sort"), style: .plain, target: self, action: #selector(sortTapped))
     }
+    @objc func sortTapped() {
+        isSorted = !isSorted
+        tableView.reloadData()
+    }
+    
     @objc func refresh(_ sender: UIRefreshControl) {
-       // Code to refresh table view
         print("refresh")
         loadData()
         sender.endRefreshing()
+        
     }
 
     func loadData()  {
+        sortedByCategoryObj.removeAll()
+        news.removeAll()
         guard let url = URL(string: "http://www.vesti.ru/vesti.rss") else { return }
         let myParser : XmlParserManager = XmlParserManager().initWithURL(url) as! XmlParserManager
         news = myParser.news
-        tableView.reloadData()
         print("loadData")
-    }
 
-    func setUpSearchBar() {
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Введите категорию"
-        searchController.searchBar.becomeFirstResponder()
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
-    }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return news.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-
-        let new = news[indexPath.row]
-
-        cell.textLabel?.text = new.title
-        cell.detailTextLabel?.text = new.date
-
-        return cell
-    }
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "showNew", sender: self)
-        tableView.deselectRow(at: indexPath, animated: true)
-
-    }
-    
-    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        // UITableView only moves in one direction, y axis
-        let currentOffset = scrollView.contentOffset.y
-        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
-
-        // Change 10.0 to adjust the distance from bottom
-        if maximumOffset - currentOffset <= 10.0 {
-//            self.loadMore()
+        for item in myParser.allCategories {
+             dictionatyByCategoryKey[item] = [NewModel]()
         }
-    }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-        if segue.identifier == "showNew" {
-            if let indexPath = self.tableView.indexPathForSelectedRow {
-                 guard let destinationVC = segue.destination as? NewViewController else { return }
-                destinationVC.new = news[indexPath.row]
-            }
+        for new in news {
+            dictionatyByCategoryKey[new.category]?.append(new)
         }
+        let sortedDic = dictionatyByCategoryKey.sorted(by: { $0.0 < $1.0 })
+        for (key, value) in sortedDic {
+            sortedByCategoryObj.append(SortedByCategories(sectionName: key, sectionObjects: value, isExpanded: true))
+        }
+        tableView.reloadData()
+
     }
 }
+
 extension FeedTableViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         

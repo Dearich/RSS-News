@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1510AAA724B11C58003D587E /* CosntraintService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1510AAA624B11C58003D587E /* CosntraintService.swift */; };
+		1510AAA924B127D5003D587E /* ExtentionTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1510AAA824B127D5003D587E /* ExtentionTableDataSource.swift */; };
 		15D6E8DC24B05D44000C5A4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D6E8DB24B05D44000C5A4F /* AppDelegate.swift */; };
 		15D6E8DE24B05D44000C5A4F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D6E8DD24B05D44000C5A4F /* SceneDelegate.swift */; };
 		15D6E8E324B05D44000C5A4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15D6E8E124B05D44000C5A4F /* Main.storyboard */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1510AAA624B11C58003D587E /* CosntraintService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosntraintService.swift; sourceTree = "<group>"; };
+		1510AAA824B127D5003D587E /* ExtentionTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtentionTableDataSource.swift; sourceTree = "<group>"; };
 		15D6E8D824B05D44000C5A4F /* RSS-News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RSS-News.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15D6E8DB24B05D44000C5A4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15D6E8DD24B05D44000C5A4F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +73,7 @@
 				15D6E8E624B05D4A000C5A4F /* LaunchScreen.storyboard */,
 				15D6E8E924B05D4A000C5A4F /* Info.plist */,
 				15D6E8EF24B062EC000C5A4F /* FeedTableViewController.swift */,
+				1510AAA824B127D5003D587E /* ExtentionTableDataSource.swift */,
 				15F106E524B09CEB0047F3C1 /* NewViewController.swift */,
 				15D6E8F324B063A2000C5A4F /* Sirvices */,
 				15F106E724B09DB70047F3C1 /* NewModel.swift */,
@@ -79,6 +84,7 @@
 		15D6E8F324B063A2000C5A4F /* Sirvices */ = {
 			isa = PBXGroup;
 			children = (
+				1510AAA624B11C58003D587E /* CosntraintService.swift */,
 				15D6E8F124B06399000C5A4F /* XMLParserHelper.swift */,
 			);
 			path = Sirvices;
@@ -156,6 +162,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				15D6E8DC24B05D44000C5A4F /* AppDelegate.swift in Sources */,
+				1510AAA724B11C58003D587E /* CosntraintService.swift in Sources */,
+				1510AAA924B127D5003D587E /* ExtentionTableDataSource.swift in Sources */,
 				15D6E8F024B062EC000C5A4F /* FeedTableViewController.swift in Sources */,
 				15F106E624B09CEB0047F3C1 /* NewViewController.swift in Sources */,
 				15D6E8F224B06399000C5A4F /* XMLParserHelper.swift in Sources */,

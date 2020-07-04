@@ -18,6 +18,7 @@ class XmlParserManager: NSObject, XMLParserDelegate {
     var discription = String()
     var img = String()
     var category = String()
+    var allCategories = [String]()
 
     func initWithURL(_ url :URL) -> AnyObject {
         startParse(url)
@@ -65,6 +66,7 @@ class XmlParserManager: NSObject, XMLParserDelegate {
 
             let new = NewModel(title: title, date: rightDate, imageURL: img, discription: discription, category: category)
             news.append(new)
+            allCategories.append(new.category)
 
         }
     }
@@ -81,6 +83,10 @@ class XmlParserManager: NSObject, XMLParserDelegate {
             }
             if self.element == "yandex:full-text" {
                 discription += data
+            }
+            
+            if self.element == "category" {
+                category += data
             }
         }
     }
