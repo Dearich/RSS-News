@@ -47,6 +47,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1510AAAA24B13DC7003D587E /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				15D6E8DB24B05D44000C5A4F /* AppDelegate.swift */,
+				15D6E8DD24B05D44000C5A4F /* SceneDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		1510AAAB24B13DE2003D587E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				15D6E8E124B05D44000C5A4F /* Main.storyboard */,
+				15D6E8E624B05D4A000C5A4F /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1510AAAC24B13DF1003D587E /* MainController */ = {
+			isa = PBXGroup;
+			children = (
+				15D6E8EF24B062EC000C5A4F /* FeedTableViewController.swift */,
+				1510AAA824B127D5003D587E /* ExtentionTableDataSource.swift */,
+			);
+			path = MainController;
+			sourceTree = "<group>";
+		};
+		1510AAAD24B13E10003D587E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				15F106E724B09DB70047F3C1 /* NewModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1510AAAE24B13E27003D587E /* SecondController */ = {
+			isa = PBXGroup;
+			children = (
+				15F106E524B09CEB0047F3C1 /* NewViewController.swift */,
+			);
+			path = SecondController;
+			sourceTree = "<group>";
+		};
 		15D6E8CF24B05D44000C5A4F = {
 			isa = PBXGroup;
 			children = (
@@ -66,17 +109,14 @@
 		15D6E8DA24B05D44000C5A4F /* RSS-News */ = {
 			isa = PBXGroup;
 			children = (
-				15D6E8DB24B05D44000C5A4F /* AppDelegate.swift */,
-				15D6E8DD24B05D44000C5A4F /* SceneDelegate.swift */,
-				15D6E8E124B05D44000C5A4F /* Main.storyboard */,
-				15D6E8E424B05D49000C5A4F /* Assets.xcassets */,
-				15D6E8E624B05D4A000C5A4F /* LaunchScreen.storyboard */,
-				15D6E8E924B05D4A000C5A4F /* Info.plist */,
-				15D6E8EF24B062EC000C5A4F /* FeedTableViewController.swift */,
-				1510AAA824B127D5003D587E /* ExtentionTableDataSource.swift */,
-				15F106E524B09CEB0047F3C1 /* NewViewController.swift */,
+				1510AAAA24B13DC7003D587E /* Delegate */,
+				1510AAAD24B13E10003D587E /* Models */,
+				1510AAAB24B13DE2003D587E /* View */,
+				1510AAAC24B13DF1003D587E /* MainController */,
+				1510AAAE24B13E27003D587E /* SecondController */,
 				15D6E8F324B063A2000C5A4F /* Sirvices */,
-				15F106E724B09DB70047F3C1 /* NewModel.swift */,
+				15D6E8E424B05D49000C5A4F /* Assets.xcassets */,
+				15D6E8E924B05D4A000C5A4F /* Info.plist */,
 			);
 			path = "RSS-News";
 			sourceTree = "<group>";

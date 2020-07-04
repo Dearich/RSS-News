@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 
-extension FeedTableViewController {
+extension FeedTableViewController: UITableViewDataSource, UITableViewDelegate {
 // MARK: - Table view data source
 
-        override func numberOfSections(in tableView: UITableView) -> Int {
+         func numberOfSections(in tableView: UITableView) -> Int {
             if isSorted {
                return sortedByCategoryObj.count
             }
@@ -20,7 +20,7 @@ extension FeedTableViewController {
             
         }
 
-        override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
             if isSorted {
                 if sortedByCategoryObj[section].isExpanded {
@@ -31,7 +31,7 @@ extension FeedTableViewController {
             return news.count
     }
 
-        override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let new: NewModel?
             switch isSorted {
             case true:
@@ -46,12 +46,12 @@ extension FeedTableViewController {
             return cell
         }
 
-        override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             self.performSegue(withIdentifier: "showNew", sender: self)
             tableView.deselectRow(at: indexPath, animated: true)
         }
 
-        override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+         func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
             if isSorted{
                 let subView = UIView()
                 subView.backgroundColor = UIColor.systemBackground
@@ -112,7 +112,7 @@ extension FeedTableViewController {
         let  isExpanded = sortedByCategoryObj[section].isExpanded
         sortedByCategoryObj[section].isExpanded = !isExpanded //меняем значение на противоположное
 
-        guard let tableView = self.tableView else { return }
+//        guard let tableView = self.tableView else { return }
         
         for row in sortedByCategoryObj[section].sectionObjects.indices {
             let indexPath = IndexPath(row: row, section: section )
@@ -129,7 +129,7 @@ extension FeedTableViewController {
         }
     }
 
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if isSorted {
             return 61.0
         }
@@ -137,6 +137,7 @@ extension FeedTableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
         if segue.identifier == "showNew" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 guard let destinationVC = segue.destination as? NewViewController else { return }

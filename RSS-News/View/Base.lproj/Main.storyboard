@@ -18,12 +18,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="VmX-bT-oKe" kind="relationship" relationship="rootViewController" id="oad-8h-XhD"/>
+                        <segue destination="oLX-eT-obB" kind="relationship" relationship="rootViewController" id="3xC-Ud-zRB"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wdi-V2-LGb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-190" y="121"/>
+            <point key="canvasLocation" x="-46" y="121"/>
         </scene>
         <!--News-->
         <scene sceneID="m9M-Eb-OkW">
@@ -71,18 +71,80 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
-                    <connections>
-                        <segue destination="tbw-X9-2zt" kind="show" identifier="showNew" id="Ol2-wO-qCA"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ur-3x-Ghk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="940.57971014492762" y="120.53571428571428"/>
+            <point key="canvasLocation" x="941" y="-23"/>
+        </scene>
+        <!--News-->
+        <scene sceneID="GRD-Oe-JDG">
+            <objects>
+                <viewController id="oLX-eT-obB" customClass="FeedTableViewController" customModule="RSS_News" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="u8V-AO-KP9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LdG-Aw-us9">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="separatorColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" textLabel="MNg-IP-2hh" detailTextLabel="gdH-lI-tiU" rowHeight="95" style="IBUITableViewCellStyleSubtitle" id="LEM-Af-5Tq">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="95"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LEM-Af-5Tq" id="DFL-3H-9kG">
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="95"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MNg-IP-2hh">
+                                                    <rect key="frame" x="20" y="26" width="33.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gdH-lI-tiU">
+                                                    <rect key="frame" x="20" y="49.5" width="53" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="sFy-XY-Z2K">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="4TZ-0n-3nk" firstAttribute="trailing" secondItem="LdG-Aw-us9" secondAttribute="trailing" id="Pyo-hp-5T4"/>
+                            <constraint firstItem="4TZ-0n-3nk" firstAttribute="bottom" secondItem="LdG-Aw-us9" secondAttribute="bottom" id="Ry6-e9-0tR"/>
+                            <constraint firstItem="sFy-XY-Z2K" firstAttribute="centerY" secondItem="u8V-AO-KP9" secondAttribute="centerY" id="TmJ-CW-X7h"/>
+                            <constraint firstItem="LdG-Aw-us9" firstAttribute="top" secondItem="4TZ-0n-3nk" secondAttribute="top" id="eJp-sQ-6nB"/>
+                            <constraint firstItem="sFy-XY-Z2K" firstAttribute="centerX" secondItem="u8V-AO-KP9" secondAttribute="centerX" id="iJI-rW-oO1"/>
+                            <constraint firstItem="LdG-Aw-us9" firstAttribute="leading" secondItem="4TZ-0n-3nk" secondAttribute="leading" id="pih-bn-in8"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="4TZ-0n-3nk"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="News" id="cNv-mg-lTp"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="sFy-XY-Z2K" id="ght-8a-2ky"/>
+                        <outlet property="tableView" destination="LdG-Aw-us9" id="Dcd-bz-d4d"/>
+                        <segue destination="tbw-X9-2zt" kind="show" identifier="showNew" id="9Z5-hF-DE5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G9M-pk-Shp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="965.21739130434787" y="772.76785714285711"/>
         </scene>
         <!--New View Controller-->
         <scene sceneID="aq0-NC-qVv">
             <objects>
-                <viewController id="tbw-X9-2zt" customClass="NewViewController" customModule="RSS_News" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="tbw-X9-2zt" customClass="NewViewController" customModule="RSS_News" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rTT-nk-xja">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -15,23 +15,32 @@ struct SortedByCategories {
     var isExpanded:Bool
 }
 
-class FeedTableViewController: UITableViewController {
+class FeedTableViewController: UIViewController {
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var tableView: UITableView!
+    
     var news:[NewModel] = []
     let searchController = UISearchController(searchResultsController: nil)
     var dictionatyByCategoryKey = [String:[NewModel]]()
     var sortedByCategoryObj = [SortedByCategories]()
     var isSorted:Bool = true
+    let background = DispatchQueue(label: "ru.azizbek.background", qos: .background, attributes: .concurrent)
+    var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityIndicator.startAnimating()
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.refreshControl?.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        tableView.addSubview(refreshControl)
         tableView.tableFooterView = UIView()
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        loadData()
-
+        background.async {
+            self.loadData()
+        }
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "sort"), style: .plain, target: self, action: #selector(sortTapped))
     }
     @objc func sortTapped() {
@@ -65,7 +74,12 @@ class FeedTableViewController: UITableViewController {
         for (key, value) in sortedDic {
             sortedByCategoryObj.append(SortedByCategories(sectionName: key, sectionObjects: value, isExpanded: true))
         }
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+            self.activityIndicator.stopAnimating()
+            self.activityIndicator.isHidden = true
+        }
+        
 
     }
 }
