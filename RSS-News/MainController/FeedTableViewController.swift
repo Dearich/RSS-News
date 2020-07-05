@@ -56,6 +56,12 @@ class FeedTableViewController: UIViewController {
     }
 
     func loadData()  {
+        if !CheckInternetConnection.Connection(){
+            let alertAction = UIAlertAction(title: "ОК", style: .cancel) {[weak self] (action) in
+                self?.loadData()
+            }
+            _ = UIAlertController(alertType: .lostInternet, action: alertAction, controller: self)
+        }
         sortedByCategoryObj.removeAll()
         news.removeAll()
         guard let url = URL(string: "http://www.vesti.ru/vesti.rss") else { return }

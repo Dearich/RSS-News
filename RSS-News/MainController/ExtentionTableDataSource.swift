@@ -21,13 +21,13 @@ extension FeedTableViewController: UITableViewDataSource, UITableViewDelegate {
         }
 
          func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
             if isSorted {
                 if sortedByCategoryObj[section].isExpanded {
                     return 0
                 }
                 return sortedByCategoryObj[section].sectionObjects.count
             }
+           
             return news.count
     }
 
@@ -112,15 +112,12 @@ extension FeedTableViewController: UITableViewDataSource, UITableViewDelegate {
         let  isExpanded = sortedByCategoryObj[section].isExpanded
         sortedByCategoryObj[section].isExpanded = !isExpanded //меняем значение на противоположное
 
-//        guard let tableView = self.tableView else { return }
-        
         for row in sortedByCategoryObj[section].sectionObjects.indices {
             let indexPath = IndexPath(row: row, section: section )
             indexPaths.append(indexPath)
         }
 
         if !isExpanded {
-            print(indexPaths)
             tableView.deleteRows(at: indexPaths, with: .fade)
             button.setTitle("Показать", for: .normal)
         } else {
