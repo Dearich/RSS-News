@@ -16,11 +16,11 @@
 2. Второй экран с информацией о конкретной новости 
     1) Выбранная новость с подробным описанием.
 
-## Сортировка
+## Сворачивание секции
 ![Alt Text](https://media.giphy.com/media/UPY3PitzfvglPVkNYw/giphy.gif)
 
 
-## Сворачивание секции
+## Сортировка
 ![Alt Text](https://media.giphy.com/media/WnNCU0QJDwujD6l6Q3/giphy.gif)
 
 
